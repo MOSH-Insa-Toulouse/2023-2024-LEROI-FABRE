@@ -33,8 +33,7 @@ void setup() {
 
   /*
   pinMode(5, INPUT); //Pin relié à l'encodeur : SW
-  pinMode(7, OUTPUT); //Pin relié au Bluetooth TXT
-  pinMode(8, INPUT); //Pin relié au Bluetooth RXD 
+  
   pinMode(10, INPUT); //Pin relié au Potentiomètre MCP41100 -CS 
   pinMode(11, OUTPUT); //Pin relié au MCP41100 SI
   pinMode(13, OUTPUT); //Pin relié au MCP41100 SCK*/
@@ -94,6 +93,7 @@ void EnvoiBT (int Pin) //Pin est le pin
   usebyte = mySerial.read();
   while (usebyte!=3)
  {
+  Serial.println(analogRead(Pin));
    mySerial.write(analogRead(Pin));
    usebyte = mySerial.read();
  }
