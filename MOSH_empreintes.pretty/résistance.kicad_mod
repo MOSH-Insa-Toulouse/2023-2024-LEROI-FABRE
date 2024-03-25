@@ -1,7 +1,7 @@
-(footprint "résistance" (version 20221018) (generator pcbnew)
+(footprint "résistance" (version 20221018) (generator pcbnew)
   (layer "F.Cu")
   (attr through_hole)
-  (fp_text reference "REF**" (at 0 -0.5 unlocked) (layer "F.SilkS")
+  (fp_text reference "REF**" (at 0 -0.5 unlocked) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.1)))
     (tstamp fa579c9d-6726-4af9-b3e5-71b9d01a3b5c)
   )
