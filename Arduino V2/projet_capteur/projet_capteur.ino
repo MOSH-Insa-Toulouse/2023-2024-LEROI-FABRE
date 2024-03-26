@@ -14,8 +14,8 @@
 #define PinFlex A1
 #define CsPin 10 // pin du Chip Select du MCP
 
-#define rxPin 7 //Bluetooth
-#define txPin 8 //Bluetooth
+#define rxPin 7 //Arduino-Bluetooth
+#define txPin 8 //Arduino-Bluetooth
 #define baudrate 38400
 
 
@@ -142,17 +142,15 @@ void EnvoiBT (int Pin) //Pin est le pin
   while (usebyte!=3)
  {
   Serial.println(analogRead(Pin));
-   mySerial.write(analogRead(Pin));
+   //mySerial.write(analogRead(Pin));
+   mySerial.write(18);
    usebyte = mySerial.read();
  }
-  
-
-
 }
 
 
 void loop() {
-
+unsigned long t1 = millis();
   Affichage_OLED();
   setPotWiper(pot0, R2);  
 
@@ -162,6 +160,8 @@ void loop() {
   if (mySerial.read()==2) {
     EnvoiBT(PinFlex);
   }
+  unsigned long t2 = millis() - t1;
+  Serial.print(t2);
 }
 
 //définition de la fonction d'interruption. Elle est exécutée dès que la pin 2 est sur HIGH, c'est-à-dire dès que l'on tourne l'encodeur.
