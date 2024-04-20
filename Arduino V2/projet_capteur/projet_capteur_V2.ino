@@ -143,7 +143,7 @@ int i;
 void EnvoiBT (int Pin) //Pin est le pin
 {
 // put your main code here, to run repeatedly:
-  Serial.println("Je BT");   //Le GROS PB C'EST QUE CA RNTRE PAS DS CETTE BOUCLE (sinon ça afficherait ce texte)
+  Serial.println("Je BT");   //Pour vérif qu'on est dans la boucle
   usebyte = HC05.read();
   if (usebyte!=3)
   {
