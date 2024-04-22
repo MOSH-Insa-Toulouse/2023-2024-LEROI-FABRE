@@ -100,6 +100,19 @@ void setPotWiper(int addr, int pos) {
   Serial.println(" ohms");*/
 }
 
+float Capteur_Flex()
+{
+  float R = -0.2636*analogRead(PinFlex)+185.9;
+  return R;
+}
+
+float Capteur_Graphite()
+{
+  float Voltage=analogRead(PinCapteur)*5.0/1024.0;
+  float Resistance=((R1*((R2+R3)/R2)*(Vcc/Voltage))-R5-R1)*calibre;
+  return Resistance;
+
+}
 
 void Affichage_OLED() {
 
@@ -111,25 +124,22 @@ void Affichage_OLED() {
 
 
 if (Encodeur % 2) {  //boucle permettant de naviguer dans le menu : si l'encodeur est sur une position paire, il affiche le capteur flex, et s'il est sur une position impaire, il affiche le capteur graphite.
-     float R = -0.2636*analogRead(PinFlex)+185.9;
-     int Angle=((R-30)*2);
-      String texte = String(analogRead(PinFlex));
+
+    float Res = Capteur_Flex();
+    int Angle=((Res-30)*2);
 
 ecranOLED.println(F("Capteur Flex :"));
 ecranOLED.print(F("R :"));
-ecranOLED.println(R);
+ecranOLED.println(Res);
 ecranOLED.print(F("Angle :"));
 ecranOLED.print(Angle);
 ecranOLED.display();
 
   } else {
 
-    Voltage=analogRead(PinCapteur)*5.0/1024.0;
-    Resistance=((R1*((R2+R3)/R2)*(Vcc/Voltage))-R5-R1)*calibre;
-    String texte = String(Resistance);
-
+    float ResG = Capteur_Graphite();
     ecranOLED.print(F("Capteur Graphite :    "));
-    ecranOLED.print(texte);
+    ecranOLED.print(ResG);
     ecranOLED.display();
 
   }
@@ -143,20 +153,34 @@ int i;
 void EnvoiBT (int Pin) //Pin est le pin
 {
 // put your main code here, to run repeatedly:
+  Affichage_OLED();
   Serial.println("Je BT");   //Pour vérif qu'on est dans la boucle
   usebyte = HC05.read();
+  float Mes=0;
   if (usebyte!=3)
   {
-    int Mes = analogRead(Pin);
-  Serial.println(Mes);
-   char Val[10];
-   dtostrf(Mes, 5, 2, Val);
-   HC05.write(Val);
-   usebyte = HC05.read();
-   Serial.println("fini");
-   delay(500);
   
- //}
+    if (Pin == PinFlex)
+    {
+
+      Mes = Capteur_Flex();
+      int Angle=((Mes-30)*2);
+
+    }
+    if (Pin==PinCapteur)
+    {
+      Mes=Capteur_Graphite();
+  
+    }
+
+    Serial.println(Mes);
+    char Val[10];
+    dtostrf(Mes, 5, 2, Val);
+    HC05.write(Val);
+    usebyte = HC05.read();
+    Serial.println("fini");
+    delay(500);
+
  }
   }
 
@@ -168,17 +192,13 @@ void loop() {
   while (HC05.available()) {
     int Recu = HC05.read();
 
-
-
     while (Recu==1)
       {
         EnvoiBT(PinCapteur);
-        
       }
       while (Recu==2)
       {
         EnvoiBT(PinFlex);
-        
       }
 
   }
