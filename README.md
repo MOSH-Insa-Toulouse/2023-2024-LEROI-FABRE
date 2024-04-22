@@ -65,9 +65,58 @@ Notre projet s'accompagne également d'une App Android : grâce à la communicat
 
 # Je veux aller voir...
  __(cliquez)__ 
+
+## L'Electronique Analogique 
+<details>
+<summary> Explications. </summary>
+    
+Vous trouverez dans ce dossier le circuit analogique du capteur graphite. Il y a un amplificateur transimpédance et un filtre qui permettent d'obtenir un signal utilisable. En effet, le signal délivré par le capteur sans ce circuit est trop faible : il a un courant moyen de 100nA, donc il faudrait un microcontrôleur très précis pour pouvoir détecter des variations sur ce signal. C'est pourquoi nous l'amplifions. 
+
+Les filtres sont nécessaires afin d'élminer les fréquences 50Hz dans lesquelles nos environnements sont baignés (à cause du réseau électrique), et d'autres fréquences parasites.
+
+Voici un schéma, qui est une capture d'écran de nos simulations LTSpice : 
+
+(insérer photo avec rectangles)
+
+Les parties qui servent à filtrer sont dans les rectangles :
+- le rectangle vert, avec une capacité de 100n, sert à filtrer le signal d'entrée. C'est un filtre passe-bas. Sa fréquence de transition est d'envirion 159Hz (formule f=1/(2*pi*R*C)). Il permet donc d'éliminer le bruit qui pourrait naître à l'entrée du circuit.
+- le rectangle violet a une fonction similaire : c'est un filtre passe-bas, qui permet de filtrer le bruit en sortie, de fréquence de transition de 1591Hz.
+- le rectangle rouge entoure le filtre passe-bas qui permet de filtrer le bruit environnant à 50Hz.
+
+Le reste du circuit permet de réaliser l'amplifictation du signal. 
+
+</details>
+
 ## Le KiCad ! [C'est ici](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/tree/main/KiCad)
 
+<details>
+<summary> Explications. </summary>
+    
+Nous avons créé des empreintes KiCad pour notre capteur graphite, et pour les éléments qui ne sont pas déjà disponibles dans a librairie intégrée KiCad. Vous pouvez les retrouver dans le dossier KiCad. 
+
+Nous avons ces contraintes pour la fabrication de nos shields : 
+- largeur de routage de 0.5mm minimum.
+- largeur de 0.5mm minimum entre différents routages afin d'assurer l'isolation électrique.
+- nous avons élargi les pads du module bluetooth, de l'encodeur rotatoire, de l'écran OLED et des connecteurs du header à 2*2.54 (oval).
+- vias de 0.8mm, cercle de 2.54mm.
+
+Cela assure le fonctionnement du shield, et nous permet de percer les vias facilement.
+
+</details>
+
+
 ## Non, je veux voir le code Arduino [Juste là](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/tree/main/Arduino%20V2/projet_capteur) 
+
+<details>
+<summary> Explications. </summary>
+
+Ce code a toutes ces fonctionalités :
+- gère l'affichage sur l'écran OLED via une fonction.
+- l'interruption DoEncodeur est réalisée à chaque fois que quelqu'un tourne l'encodeur rotatoire : l'utilisateur tourne l'encodeur, et au prochain tick de clock, linterruption sera réalisée. Elle permet d'ajouter +1 à la valeur que compte l'encodeur. Celui-ci sert à gérer le menu de l'écran OLED. Le principe est que lorsque nous tournons l'encodeur, c'est pour changer l'affichage de l'écran. Ainsi, si la valeur comptée par l'encodeur est paire nous aurons un afichage (capteur Flex), et s'il est impair, nous aurons un autre affichage (capteur graphite).
+- la communication Bluetooth : nosu envoyons les données du capteur graphite ou du capteur flex à une application MIT via bluetooth. Si le module bluetooth recoit 1 de la part de l'application, c'est que l'utilisateur a appuyé sur le bouton "capteur flex". S'il recoit 2, c'est que l'utilisateur a appuyé sur "capteur graphite" dans l'app.
+- la modification de la résistance du potentiomètre numérique : cela permet de calibrer le signal renvoyé par le capteur graphite.
+
+  </details>
 
 ## Je préfère voir l'app Android [Okay...](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/tree/main/App%20Android)
 
