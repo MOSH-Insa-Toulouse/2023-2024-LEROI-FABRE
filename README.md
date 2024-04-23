@@ -21,6 +21,7 @@ graph TD;
 <summary>  Etapes du projet MOSH :tada:  </summary>
   
   - [x] Attribution des inputs de l'arduino aux différents capteurs
+  - [X] Electronique Analogique
   - [x] Schématique KiCad  
   - [x] Routage KiCad
   - [x] Impression du cricuit
