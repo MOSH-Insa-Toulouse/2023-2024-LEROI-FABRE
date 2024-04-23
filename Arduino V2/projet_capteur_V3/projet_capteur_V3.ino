@@ -21,7 +21,7 @@
 float R1= 100000.0;
 float R3 = 100000.0;
 float R6 = 100000.0;
-float R2 = 1000.0; //Résistance dont la valeur peut varier, à faire varier pour le gain !
+float R2 = 1000.0;
 float R5 = 10000.0;
 float calibre=0.000001;//en MOhm
 float Vcc=5.0;
@@ -108,11 +108,8 @@ float Capteur_Flex()
 
 float Capteur_Graphite()
 {
-  Voltage=analogRead(PinCapteur)*5.0/1024.0;
-
-  Resistance=((R1*((R2+R3)/R2)*(Vcc/Voltage))-R5-R1)*calibre; // Vérifier la formule Pourquoi on a des pics ????
-  Serial.println(Resistance);
-
+  float Voltage=analogRead(PinCapteur)*5.0/1024.0;
+  float Resistance=((R1*((R2+R3)/R2)*(Vcc/Voltage))-R5-R1)*calibre;
   return Resistance;
 
 }
@@ -146,30 +143,31 @@ ecranOLED.display();
     ecranOLED.display();
 
   }
-delay(10);
+delay(200);
 }
 
 
 int usebyte;
 int i;
 
-void EnvoiBT (int Pin) //Pin est le pin
+void EnvoiBT (int usebyte)
 {
 // put your main code here, to run repeatedly:
   Affichage_OLED();
-  usebyte = HC05.read();
+     //Pour vérif qu'on est dans la boucle
+  
+  Serial.println(usebyte);
   float Mes=0;
   if (usebyte!=3)
   {
   
-    if (Pin == PinFlex)
+    if (usebyte == 2)
     {
-
       Mes = Capteur_Flex();
       int Angle=((Mes-30)*2);
 
     }
-    if (Pin==PinCapteur)
+    if (usebyte == 1)
     {
       Mes=Capteur_Graphite();
   
@@ -179,29 +177,28 @@ void EnvoiBT (int Pin) //Pin est le pin
     char Val[10];
     dtostrf(Mes, 5, 2, Val);
     HC05.write(Val);
-    usebyte = HC05.read();
-    delay(50);
-    
+    //Serial.println("fini");
+    delay(500);
 
+ }
   }
-}
 
 
 
 void loop() {
-  setPotWiper(pot0, R2);
+  setPotWiper(pot0, R2);  
     Affichage_OLED();
-  while (HC05.available()) {
-    int Recu = HC05.read();
+  if (HC05.available()) 
+  {
+    int Byte = HC05.read();
+     
+    EnvoiBT(Byte);
 
-    while (Recu==1)
-      {
-        EnvoiBT(PinCapteur);
-      }
-      while (Recu==2)
-      {
-        EnvoiBT(PinFlex);
-      }
+    int Byte2 = Byte;
+  }
+  else
+  {
+    int Byte = HC05.read();
 
   }
 
