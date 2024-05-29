@@ -67,7 +67,7 @@ Notre projet s'accompagne également d'une App Android : grâce à la communicat
 <details>
 <summary> tout ça pour l'élaboration d'une Datasheet ! </summary>
 L'objectif final, le graal du projet, c'est de rédiger une datasheet du cpateur Graphite. Le banc de test et notre code arduino nous ont permis de réaliser toutes les mesures. 
-<details>
+</details>
 
 # Je veux aller voir...
  __(cliquez)__ 
@@ -142,6 +142,8 @@ Voici une photo de l'application en fonctionnement :
 ![IMG_8024](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/blob/main/Images/app.png)
 
 </details>
+
+## La Datasheet [Elle est au chaud ici](https://www.google.com/search?q=lien&rlz=1C5CHFA_enFR990FR990&oq=lien&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIGCAcQRRg80gEHOTE4ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 
 ## Des photos du projet, plutôt ! 📷 
 <details>
