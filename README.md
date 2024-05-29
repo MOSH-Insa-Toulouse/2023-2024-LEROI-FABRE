@@ -64,6 +64,11 @@ Le code permettra de commander le microcontrôleur Arduino Uno : gestion des don
 Notre projet s'accompagne également d'une App Android : grâce à la communication Bluetooth, nous pouvons afficher sur un smartphone des graphiques des données enregistrées par nos deux capteurs. Nous créons l'app sur  MIT app Inventor (https://community.appinventor.mit.edu/).
 </details>
 
+<details>
+<summary> tout ça pour l'élaboration d'une Datasheet ! </summary>
+L'objectif final, le graal du projet, c'est de rédiger une datasheet du cpateur Graphite. Le banc de test et notre code arduino nous ont permis de réaliser toutes les mesures. 
+<details>
+
 # Je veux aller voir...
  __(cliquez)__ 
 
