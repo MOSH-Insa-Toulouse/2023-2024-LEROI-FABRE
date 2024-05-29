@@ -26,16 +26,14 @@ graph TD;
   - [x] Routage KiCad
   - [x] Impression du cricuit
   - [x] Percage
-  - [ ] Montage des capteurs sur le circuit imprimé
-  - [ ] Code Arduino
-  - [ ] App Android
-  - [ ] Création du banc de test
-  - [ ] Création de la datasheet
+  - [X] Montage des capteurs sur le circuit imprimé (par Cathy, MERCIII)
+  - [X] Code Arduino
+  - [X] App Android
+  - [X] Création du banc de test
+  - [X] Création de la datasheet
         
 </details>
 
-> [!IMPORTANT]
-  > Le projet n'est pas encore finalisé
 
 # Quel est ce projet ?
 
@@ -43,7 +41,9 @@ Ce projet consiste en...
 
 <details>
 <summary> la création d'un capteur Graphite. </summary>
-Un capteur graphite, c'est tout simplement un morceau de papier où l'on colorie une zone à l'aide d'un crayon à papier. Il permet de mesurer des variations de résistance lorqu'on le déforme. Voici la forme de capteur que nous utilisons : (insérer la photo).
+Un capteur graphite, c'est tout simplement un morceau de papier où l'on colorie une zone à l'aide d'un crayon à papier. Il permet de mesurer des variations de résistance lorqu'on le déforme. Voici la forme de capteur que nous utilisons : 
+
+![IMG_8024](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/blob/main/Images/Jauge_Contrainte_A_Imprimer.png)
 </details>
 
 <details>
@@ -61,7 +61,12 @@ Le code permettra de commander le microcontrôleur Arduino Uno : gestion des don
 
 <details>
 <summary> la création d'une App Android. </summary>
-Notre projet s'accompagne également d'une App Android : grâce à la communication Bluetooth, nous pouvons afficher sur un smartphone des graphiques des données enregistrées par nos deux capteurs. Nous créons l'app sur MIT App Inventor (insérer le lien).
+Notre projet s'accompagne également d'une App Android : grâce à la communication Bluetooth, nous pouvons afficher sur un smartphone des graphiques des données enregistrées par nos deux capteurs. Nous créons l'app sur  MIT app Inventor (https://community.appinventor.mit.edu/).
+</details>
+
+<details>
+<summary> tout ça pour l'élaboration d'une Datasheet ! </summary>
+L'objectif final, le graal du projet, c'est de rédiger une datasheet du cpateur Graphite. Le banc de test et notre code arduino nous ont permis de réaliser toutes les mesures. 
 </details>
 
 # Je veux aller voir...
@@ -76,8 +81,8 @@ Vous trouverez dans ce dossier le circuit analogique du capteur graphite. Il y a
 Les filtres sont nécessaires afin d'élminer les fréquences 50Hz dans lesquelles nos environnements sont baignés (à cause du réseau électrique), et d'autres fréquences parasites.
 
 Voici un schéma, qui est une capture d'écran de nos simulations LTSpice : 
+![IMG_8024](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/blob/main/Images/LTSpice)
 
-(insérer photo avec rectangles)
 
 Les parties qui servent à filtrer sont dans les rectangles :
 - le rectangle vert, avec une capacité de 100n, sert à filtrer le signal d'entrée. C'est un filtre passe-bas. Sa fréquence de transition est d'envirion 159Hz (formule f=1/(2*pi*R*C)). Il permet donc d'éliminer le bruit qui pourrait naître à l'entrée du circuit.
@@ -103,6 +108,12 @@ Nous avons ces contraintes pour la fabrication de nos shields :
 
 Cela assure le fonctionnement du shield, et nous permet de percer les vias facilement.
 
+| :exclamation:  ATTENTION CHERS COLLEGUES   |
+|----------------------------------------------|
+
+Nous avons commis des erreurs sur le fichier KiCad ! Chers ingénieurs/techniciens/instrumentateurs qui réalisez ce projet en suivant nos pas, n'oubliez pas de relier le MCP au reste du circuit !! Et n'inversez pas les pattes du LTC !!
+
+
 </details>
 
 
@@ -120,6 +131,67 @@ Ce code a toutes ces fonctionalités :
   </details>
 
 ## Je préfère voir l'app Android [Okay...](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/tree/main/App%20Android)
+<details>
+<summary> Explications. </summary>
 
-## Des photos du projet, plutôt ! 📷 [Ici](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/tree/main/Images)
+Le projet s'accompagne d'une App qui fonctionne sur les téléphones android. Elle permet d'abotenir en temps réel les mesures du capteur graphite ou du capteur flex. Cela fonctionne grâce à une connexion Bluetooth. L'application est simple d'utilisation pour l'utilisateur.
+
+Le code de l'application se fait sous [MIT App Inventor.](https://community.appinventor.mit.edu/) C'est un site gratuit simple dutilisation. Le code se fait via des blocks que l'utilisateur ajoute petit à petite, c'est très intuitif.
+Voici une photo de l'application en fonctionnement :
+
+![IMG_8024](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/blob/main/Images/app.png)
+
+</details>
+
+## La Datasheet [Elle est au chaud ici](https://www.google.com/search?q=lien&rlz=1C5CHFA_enFR990FR990&oq=lien&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIGCAcQRRg80gEHOTE4ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+
+## Des photos du projet, plutôt ! 📷 
+<details>
+<summary> Attention, époustouflant. </summary>
+
+| :boom: BANG               |
+|:----------------------------|
+| Le capteur fonctionne ! On capte bien des variations quand on bouge le capteur Graphite |
+
+![IMG_8024](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/blob/main/Images/ca-marche!.png)
+
+| :boom: BANG               |
+|:----------------------------|
+| Le projet, c'est aussi beaucoup de fils lors de la phase de tests ! On a nettoyé tous ces fils ensuite, et c'était tout de suite beaucoup plus clair..! |
+
+
+![IMG_8024](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/blob/main/Images/bcp-de-fils.png)
+
+| :boom: BANG               |
+|:----------------------------|
+| Une des erreurs du fichier KiCad... |
+
+
+![IMG_8024](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/blob/main/Images/erreurs.png)
+
+| :boom: BANG               |
+|:----------------------------|
+| N'oubliez pas de faire un poisson d'avril à votre binôme |
+
+![IMG_8024](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/blob/main/Images/poisson.png)
+
+| :boom: BANG               |
+|:----------------------------|
+| Quelle belle application Android |
+
+![IMG_8024](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/blob/main/Images/app.png)
+
+| :boom: BANG               |
+|:----------------------------|
+| Petit selfie de fin de projet |
+
+![IMG_8024](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/blob/main/Images/selfie.png)
+
+
+| :boom: BANG               |
+|:----------------------------|
+| C'était un projet à en tomber par terre |
+
+![IMG_8024](https://github.com/MOSH-Insa-Toulouse/2023-2024-LEROI-FABRE/blob/main/Images/a-en-tomber-par-terre.png)
+
 
