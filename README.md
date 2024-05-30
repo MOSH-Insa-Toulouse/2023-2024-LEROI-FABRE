@@ -66,7 +66,7 @@ Notre projet s'accompagne également d'une App Android : grâce à la communicat
 
 <details>
 <summary> tout ça pour l'élaboration d'une Datasheet ! </summary>
-L'objectif final, le graal du projet, c'est de rédiger une datasheet du cpateur Graphite. Le banc de test et notre code arduino nous ont permis de réaliser toutes les mesures. 
+L'objectif final, le graal du projet, c'est de rédiger une datasheet du capteur Graphite. Le banc de test et notre code arduino nous ont permis de réaliser toutes les mesures. 
 </details>
 
 # Je veux aller voir...
